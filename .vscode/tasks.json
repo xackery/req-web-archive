@@ -9,8 +9,8 @@
             "command": "go",
             "args": [
                 // Ask msbuild to generate full paths for file names.
-                "run",                
-                "*.go"
+                "run",
+                "main.go"
             ],
             "group": "build",
             "presentation": {

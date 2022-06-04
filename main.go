@@ -11,6 +11,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/xackery/req-web/db"
 	"github.com/xackery/req-web/item"
+	etemplate "github.com/xackery/req-web/template"
 )
 
 func main() {
@@ -29,8 +30,8 @@ func run() error {
 		return fmt.Errorf("db.Init: %w", err)
 	}
 
-	t := &Template{
-		templates: template.Must(template.ParseGlob("web/template/*.html")),
+	t := &etemplate.Template{
+		Templates: template.Must(template.ParseGlob("web/template/*.html")),
 	}
 
 	e := echo.New()
