@@ -13,12 +13,10 @@ func SpellGet(c echo.Context) error {
 	var err error
 	args := map[string]interface{}{}
 	var spell = struct {
-		ID         int
-		Name       string
-		AC         int
-		Slots      int
-		ShortNames string
-		Weight     string
+		ID        int
+		Name      string
+		Cast_time int
+		Mana      int
 	}{}
 
 	args["id"], err = strconv.Atoi(c.Param("id"))
@@ -27,8 +25,8 @@ func SpellGet(c echo.Context) error {
 	}
 
 	query := `SELECT
-	id, name, ac, slots
-	FROM spells
+	id, name, cast_time, mana
+	FROM spells_new
 	WHERE id = :id`
 
 	rows, err := db.Instance.NamedQueryContext(c.Request().Context(), query, args)

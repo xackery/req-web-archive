@@ -25,7 +25,7 @@ func Init(ctx context.Context) error {
 func connect() error {
 	var err error
 	var db *sqlx.DB
-	db, err = sqlx.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", "eqemu", "eqemu", "127.0.0.1", "3306", "peq"))
+	db, err = sqlx.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", "ro", "ro", "content-cdn.projecteq.net", "16033", "peq_content"))
 	if err != nil {
 		return fmt.Errorf("sql.Open: %w", err)
 	}

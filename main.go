@@ -47,6 +47,7 @@ func run() error {
 	e.GET("/spell/:id", spell.SpellGet)
 	e.GET("/npc/:id", npc.NpcGet)
 	e.Static("/static", "web/static")
+	fmt.Println("http://localhost:8080")
 	e.Renderer = t
 
 	e.Logger.Fatal(e.Start(":8080"))
