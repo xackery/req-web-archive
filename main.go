@@ -12,6 +12,7 @@ import (
 	"github.com/xackery/req-web/db"
 	"github.com/xackery/req-web/item"
 	"github.com/xackery/req-web/npc"
+	"github.com/xackery/req-web/spell"
 	etemplate "github.com/xackery/req-web/template"
 )
 
@@ -43,6 +44,7 @@ func run() error {
 	e.Use(middleware.Recover())
 	e.GET("/", root)
 	e.GET("/item/:id", item.ItemGet)
+	e.GET("/spell/:id", spell.SpellGet)
 	e.GET("/npc/:id", npc.NpcGet)
 	e.Static("/static", "web/static")
 	e.Renderer = t
