@@ -17,6 +17,7 @@ func SpellGet(c echo.Context) error {
 		Name      string
 		Cast_time int
 		Mana      int
+		Range     int
 	}{}
 
 	args["id"], err = strconv.Atoi(c.Param("id"))
@@ -24,10 +25,7 @@ func SpellGet(c echo.Context) error {
 		return fmt.Errorf("strconv.Atoi: %w", err)
 	}
 
-	query := `SELECT
-	id, name, cast_time, mana
-	FROM spells_new
-	WHERE id = :id`
+	query := "SELECT id, name, cast_time, mana, `range` FROM spells_new WHERE id = :id"
 
 	rows, err := db.Instance.NamedQueryContext(c.Request().Context(), query, args)
 	if err != nil {
