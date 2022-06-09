@@ -13,10 +13,15 @@ func NpcGet(c echo.Context) error {
 	var err error
 	args := map[string]interface{}{}
 	var npc = struct {
-		ID    int
-		Name  string
-		Level int
-		HP    int
+		ID     int
+		Name   string
+		Level  int
+		Race   int
+		Class  int
+		HP     int
+		Mana   int
+		Mindmg int
+		Maxdmg int
 	}{}
 
 	args["id"], err = strconv.Atoi(c.Param("id"))
@@ -25,7 +30,7 @@ func NpcGet(c echo.Context) error {
 	}
 
 	query := `SELECT
-	id, name, level, hp
+	id, name, level, race, class, hp, mana, mindmg, maxdmg
 	FROM npc_types
 	WHERE id = :id`
 
