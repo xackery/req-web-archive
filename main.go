@@ -14,6 +14,7 @@ import (
 	"github.com/xackery/req-web/npc"
 	"github.com/xackery/req-web/spell"
 	etemplate "github.com/xackery/req-web/template"
+	"github.com/xackery/req-web/zone"
 )
 
 func main() {
@@ -46,6 +47,7 @@ func run() error {
 	e.GET("/item/:id", item.ItemGet)
 	e.GET("/spell/:id", spell.SpellGet)
 	e.GET("/npc/:id", npc.NpcGet)
+	e.GET("/zone/:id", zone.ZoneGet)
 	e.Static("/static", "web/static")
 	fmt.Println("http://localhost:8080")
 	e.Renderer = t
