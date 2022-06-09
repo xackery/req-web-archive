@@ -8,20 +8,22 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/xackery/req-web/db"
+	"github.com/xackery/req-web/expansion"
 )
 
 func ZoneGet(c echo.Context) error {
 	var err error
 	args := map[string]interface{}{}
 	var zone = struct {
-		ID         int
-		Long_name  string
-		Short_name sql.NullString
-		ShortName  string
-		Expansion  int
-		Min_level  int
-		Safe_x     float32
-		Safe_y     float32
+		ID            int
+		Long_name     string
+		Short_name    sql.NullString
+		ShortName     string
+		Expansion     int
+		ExpansionName string
+		Min_level     int
+		Safe_x        float32
+		Safe_y        float32
 	}{}
 
 	args["id"], err = strconv.Atoi(c.Param("id"))
@@ -48,6 +50,11 @@ func ZoneGet(c echo.Context) error {
 			zone.ShortName = zone.Short_name.String
 		} else {
 			zone.ShortName = "unknown"
+		}
+
+		zone.ExpansionName, err = expansion.ExpansionNameByID(zone.Expansion - 1)
+		if err != nil {
+			return fmt.Errorf("ExpansionNameByID %d: %w", zone.Expansion-1, err)
 		}
 	}
 	return c.Render(http.StatusOK, "zone_get", zone)

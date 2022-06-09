@@ -13,7 +13,7 @@ func TestZoneGet(t *testing.T) {
 		t.Fatalf("testdata.InitEcho: %s", err)
 	}
 	c.SetParamNames("id")
-	c.SetParamValues("3")
+	c.SetParamValues("38")
 	err = ZoneGet(c)
 	if err != nil {
 		t.Fatalf("ZoneGet: %s", err)
