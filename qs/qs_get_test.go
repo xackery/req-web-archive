@@ -1,4 +1,4 @@
-package npc
+package qs
 
 import (
 	"fmt"
@@ -7,18 +7,23 @@ import (
 	"github.com/xackery/req-web/testdata"
 )
 
-func TestNpcGet(t *testing.T) {
+func TestQsGet(t *testing.T) {
 	_, c, w, err := testdata.InitEcho()
 	if err != nil {
 		t.Fatalf("testdata.InitEcho: %s", err)
 	}
 	c.SetParamNames("id")
-	c.SetParamValues("1001")
-	err = NpcGet(c)
+	c.SetParamValues("123")
+	err = QsGet(c)
 	if err != nil {
-		t.Fatalf("NpcGet: %s", err)
+		t.Fatalf("QsGet: %s", err)
 	}
 
+	c.SetParamValues("abc")
+	err = QsGet(c)
+	if err == nil {
+		t.Fatalf("expected nil, got error %s", err)
+	}
 	fmt.Printf("%s", w.Body.Bytes())
-	//t.Fatalf("temporary error")
+	t.Fatalf("temporary error")
 }
